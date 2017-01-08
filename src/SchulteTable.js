@@ -20,7 +20,8 @@ class SchulteTable extends Component {
     this.shuffleMatrix()
 
     this.state = {
-      square: this.square
+      square: this.square,
+      stopwatch: 0
     }
   }
 
@@ -42,10 +43,8 @@ class SchulteTable extends Component {
     while (i > 1) {
       i = i - 1
       let e = this.square.length
-
       while (e > 1) {
         e = e - 1
-
         let j = Math.floor(Math.random() * this.square.length)
         let p = Math.floor(Math.random() * this.square.length)
         const tmp = this.square[i][e]
@@ -64,11 +63,7 @@ class SchulteTable extends Component {
         if (i === this.square.length - 1) lineClassNames += ' element--last'
         console.log(i)
         return (
-          <div
-            className={lineClassNames}
-            key={e}>
-            {elem}
-          </div>
+          <div className={lineClassNames} key={e}>{elem}</div>
         )
       })
 
@@ -86,7 +81,16 @@ class SchulteTable extends Component {
     }
     return (
       <button onClick={this.initializeMatrix()}>Start</button>
-    )  }
+    )  
+  }
+
+  startStopwatch () {
+    this.stopwatchInterval = setInterval(() => {
+      this.setState({
+        stopwatch: this.state.stopwatch + 100
+      })
+    }, 100)
+  }
 
   render() {
     return (
