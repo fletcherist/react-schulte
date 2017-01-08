@@ -12,7 +12,12 @@ class SchulteTable extends Component {
     super(props)
     this.square = []
 
-    const { size, initialCount } = props
+    this.initializeMatrix()
+    this.shuffle()
+  }
+
+  initializeMatrix () {
+    const { size, initialCount } = this.props
 
     let count = initialCount
     for (let i = 0; i < size; i++) {
@@ -22,17 +27,23 @@ class SchulteTable extends Component {
         count++
       }
     }
-    this.shuffle()
   }
 
   shuffle () {
     let i = this.square.length
     while (i > 1) {
       i = i - 1
-      let j = Math.floor(Math.random() * this.square.length)
-      const tmp = this.square[0][i]
-      this.square[0][i] = this.square[0][j]
-      this.square[0][j] = tmp
+      let e = this.square.length
+
+      while (e > 1) {
+        e = e - 1
+
+        let j = Math.floor(Math.random() * this.square.length)
+        let p = Math.floor(Math.random() * this.square.length)
+        const tmp = this.square[i][e]
+        this.square[i][e] = this.square[j][p]
+        this.square[j][p] = tmp
+      }
     }
   }
 

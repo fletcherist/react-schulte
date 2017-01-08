@@ -21,6 +21,7 @@
   max-width: 640px;
   max-height: 640px;
   margin: 4rem auto;
+  font-size: 1.25rem;
 }
 
 .line {
@@ -28,9 +29,9 @@
 }
 
 .element {
-  width: 13%;
-  padding-top: 5%;
-  padding-bottom: 5%;
+  width: 70px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   text-align: center;
   border-left: 1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
