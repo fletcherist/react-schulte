@@ -1,0 +1,46 @@
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.container {
+  font-family: 'Helvetica Neue';
+  max-width: 640px;
+  max-height: 640px;
+  margin: 4rem auto;
+}
+
+.line {
+  display: flex;
+}
+
+.element {
+  width: 13%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  text-align: center;
+  border-left: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  // align-self: center;
+}
+
+.element--first {
+  border-left: none;
+}
+
+.element--last {
+  border-bottom: none;
+}

@@ -1,0 +1,39 @@
+{
+  "name": "react-schulte",
+  "version": "1.0.0",
+  "description": "react implementation of Schulte's table",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fletcherist/react-schulte.git"
+  },
+  "keywords": [
+    "react",
+    "schulte",
+    "table"
+  ],
+  "author": "Phil Romanov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fletcherist/react-schulte/issues"
+  },
+  "homepage": "https://github.com/fletcherist/react-schulte#readme",
+  "devDependencies": {
+    "react-scripts": "0.8.4",
+    "react-dom": "^15.0.0"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0"
+  },
+  "dependencies": {
+    "react-addons-css-transition-group": "^15.4.2",
+    "react": "^15.0.0"
+  }
+}
