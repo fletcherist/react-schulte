@@ -6,7 +6,8 @@ class SchulteTable extends Component {
   static defaultProps = {
     size: 5,
     initialCount: 1,
-    keyboard: false
+    keyboard: false,
+    annotation: false
   }
   constructor (props) {
     super(props)
@@ -77,6 +78,17 @@ class SchulteTable extends Component {
     })
   }
 
+  renderKeyboard () {
+    if (this.props.keyboard) {
+      return (
+        <div>push space when you ready and space, when you finished</div>
+      )
+    }
+    return (
+      <button onClick={this.initializeMatrix()}>Start</button>
+    )
+  }
+
   render() {
     return (
       <div className='container'>
@@ -89,6 +101,8 @@ class SchulteTable extends Component {
           <div>{this.renderSquare()}</div>
         </ReactCSSTransitionGroup>
         <button onClick={this.shuffleMatrix}>shuffle</button>
+        {this.renderKeyboard()}
+        
       </div>
     )
   }
@@ -97,7 +111,8 @@ class SchulteTable extends Component {
 SchulteTable.propTypes = {
   keyboard: PropTypes.bool,
   size: PropTypes.number,
-  initialCount: PropTypes.number
+  initialCount: PropTypes.number,
+  annotation: PropTypes.bool
 }
 
 
