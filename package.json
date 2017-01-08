@@ -1,6 +1,6 @@
 {
   "name": "react-schulte",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react implementation of Schulte's table",
   "main": "index.js",
   "scripts": {

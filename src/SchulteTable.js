@@ -86,8 +86,7 @@ class SchulteTable extends Component {
     }
     return (
       <button onClick={this.initializeMatrix()}>Start</button>
-    )
-  }
+    )  }
 
   render() {
     return (
