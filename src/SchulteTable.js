@@ -12,8 +12,15 @@ class SchulteTable extends Component {
     super(props)
     this.square = []
 
+    this.shuffleMatrix = this.shuffleMatrix.bind(this)
+    this.initializeMatrix = this.initializeMatrix.bind(this)
+
     this.initializeMatrix()
-    this.shuffle()
+    this.shuffleMatrix()
+
+    this.state = {
+      square: this.square
+    }
   }
 
   initializeMatrix () {
@@ -29,7 +36,7 @@ class SchulteTable extends Component {
     }
   }
 
-  shuffle () {
+  shuffleMatrix () {
     let i = this.square.length
     while (i > 1) {
       i = i - 1
@@ -45,6 +52,7 @@ class SchulteTable extends Component {
         this.square[j][p] = tmp
       }
     }
+    this.setState({square: this.square})
   }
 
   renderSquare () {
@@ -80,6 +88,7 @@ class SchulteTable extends Component {
           transitionLeaveTimeout={300}>
           <div>{this.renderSquare()}</div>
         </ReactCSSTransitionGroup>
+        <button onClick={this.shuffleMatrix}>shuffle</button>
       </div>
     )
   }
