@@ -22,6 +22,18 @@ class SchulteTable extends Component {
         count++
       }
     }
+    this.shuffle()
+  }
+
+  shuffle () {
+    let i = this.square.length
+    while (i > 1) {
+      i = i - 1
+      let j = Math.floor(Math.random() * this.square.length)
+      const tmp = this.square[0][i]
+      this.square[0][i] = this.square[0][j]
+      this.square[0][j] = tmp
+    }
   }
 
   renderSquare () {
