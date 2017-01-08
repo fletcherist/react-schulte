@@ -1,31 +1,50 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 class Stopwatch extends Component {
   constructor () {
     super()
-    this.times = [0, 0, 0]
+    this.running = false
     this.time = 0
     this.elapsed = 0
 
     this.tick = this.tick.bind(this)
-    this.running = false
+    this.state = {
+      times: [0, 0, 0]
+    }
+  }
+
+  componentWillMount () {
+    if (this.props.start) {
+      this.start()
+    }
   }
 
   start () {
-    this.time = performance.now()
+    if (!this.running) {
+      this.running = true
+      this.tick()
+    }
   }
 
-  tick () {
-
+  tick (time) {
+    this.elapsed = time
+    this.calculate(time)
     requestAnimationFrame(this.tick)
   }
 
-  constructor ()
+  calculate (time) {
+    console.log(time)
+  }
+
   render () {
     return (
       <div>that</div>
     )
   }
+}
+
+Stopwatch.propTypes = {
+  start: PropTypes.bool.isRequired
 }
 
 export default Stopwatch

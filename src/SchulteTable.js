@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import Stopwatch from './Stopwatch'
 import './SchulteTable.css'
 
 class SchulteTable extends Component {
@@ -21,7 +22,7 @@ class SchulteTable extends Component {
 
     this.state = {
       square: this.square,
-      stopwatch: 0
+      stopwatchRunning: false,
     }
   }
 
@@ -105,7 +106,7 @@ class SchulteTable extends Component {
         </ReactCSSTransitionGroup>
         <button onClick={this.shuffleMatrix}>shuffle</button>
         {this.renderKeyboard()}
-        
+        <Stopwatch start={this.state.stopwatchRunning}/>
       </div>
     )
   }
