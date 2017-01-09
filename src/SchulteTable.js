@@ -7,7 +7,7 @@ class SchulteTable extends Component {
   static defaultProps = {
     size: 5,
     initialCount: 1,
-    keyboard: false,
+    keyboard: true,
     annotation: false
   }
   constructor (props) {
@@ -18,12 +18,32 @@ class SchulteTable extends Component {
     this.initializeMatrix = this.initializeMatrix.bind(this)
 
     this.initializeMatrix()
-    this.shuffleMatrix()
 
     this.state = {
       square: this.square,
       stopwatchRunning: false,
     }
+  }
+
+  componentWillMount () {
+    this.setState({
+      stopwatchRunning: false
+    })
+  }
+
+  componentDidMount () {
+    if (this.props.keyboard) {
+      window.addEventListener('keydown', e => {
+        // 32 — Spacebar
+        if (e.keyCode === 32) {
+          this.toggleStopwatch()
+        }
+      })
+    }
+  }
+
+  componentWillUpdate () {
+    console.log(this.state)
   }
 
   initializeMatrix () {
@@ -62,7 +82,6 @@ class SchulteTable extends Component {
         let lineClassNames = 'element'
         if (e === 0) lineClassNames += ' element--first'
         if (i === this.square.length - 1) lineClassNames += ' element--last'
-        console.log(i)
         return (
           <div className={lineClassNames} key={e}>{elem}</div>
         )
@@ -75,22 +94,24 @@ class SchulteTable extends Component {
   }
 
   renderKeyboard () {
-    if (this.props.keyboard) {
+    const { keyboard } = this.props
+    const { stopwatchRunning } = this.state
+    if (keyboard) {
       return (
         <div>push space when you ready and space, when you finished</div>
       )
     }
+
+    let startWord = !stopwatchRunning ? 'Start' : 'Stop'
     return (
-      <button onClick={this.initializeMatrix()}>Start</button>
+      <button onClick={this.shuffleMatrix}>{startWord}</button>
     )  
   }
 
-  startStopwatch () {
-    this.stopwatchInterval = setInterval(() => {
-      this.setState({
-        stopwatch: this.state.stopwatch + 100
-      })
-    }, 100)
+  toggleStopwatch () {
+    this.setState({
+      stopwatchRunning: !this.state.stopwatchRunning
+    })
   }
 
   render() {

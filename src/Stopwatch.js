@@ -9,13 +9,23 @@ class Stopwatch extends Component {
 
     this.tick = this.tick.bind(this)
     this.state = {
-      times: [0, 0, 0]
+      times: [0, 0, 0],
+      time: 0
     }
   }
 
   componentWillMount () {
     if (this.props.start) {
       this.start()
+    }
+  }
+
+  componentWillReceiveProps () {
+    console.log(this.props)
+    if (this.props.start) {
+      this.start()
+    } else {
+      this.stop()
     }
   }
 
@@ -26,19 +36,27 @@ class Stopwatch extends Component {
     }
   }
 
+  stop () {
+    cancelAnimationFrame(this.frame)
+    this.frame = null
+  }
+
   tick (time) {
     this.elapsed = time
     this.calculate(time)
-    requestAnimationFrame(this.tick)
+    this.frame = requestAnimationFrame(this.tick)
   }
 
   calculate (time) {
-    console.log(time)
+    // if (time / )
+    this.setState({
+      time: Math.floor(time)
+    })
   }
 
   render () {
     return (
-      <div>that</div>
+      <div>{this.state.time.toString()}</div>
     )
   }
 }
