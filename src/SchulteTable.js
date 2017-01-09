@@ -3,6 +3,11 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Stopwatch from './Stopwatch'
 import './SchulteTable.css'
 
+const COLOURS =  [
+  [['#3acfd5', '#3a4ed5'], ['#a5e3e6', '#dbdfff']],
+  [['#3acfd5', '#3a4ed5'], ['black', 'blue']]
+]
+
 class SchulteTable extends Component {
   static defaultProps = {
     size: 5,
@@ -18,15 +23,11 @@ class SchulteTable extends Component {
     this.initializeMatrix = this.initializeMatrix.bind(this)
 
     this.initializeMatrix()
-
-    this.state = {
-      square: this.square,
-      stopwatchRunning: false,
-    }
   }
 
   componentWillMount () {
     this.setState({
+      square: this.square,
       stopwatchRunning: false
     })
   }
@@ -77,13 +78,37 @@ class SchulteTable extends Component {
   }
 
   renderSquare () {
+    const randomPallette = Math.floor(Math.random() * COLOURS.length)
+    const coloursBright = COLOURS[randomPallette][0]
+    const coloursPale = COLOURS[randomPallette][1]
     return this.square.map((line, i) => {
       let lines = line.map((elem, e) => {
         let lineClassNames = 'element'
+        let lineStyles = {}
         if (e === 0) lineClassNames += ' element--first'
-        if (i === this.square.length - 1) lineClassNames += ' element--last'
+        else if (i === this.square.length - 1) lineClassNames += ' element--last'
+        else if (i === Math.floor(this.square.length / 2) &&
+            e === Math.floor(this.square[i].length / 2)) {
+          lineClassNames += ' element--center'
+          lineStyles = Object.assign(lineStyles, {
+            borderImage: `linear-gradient(to bottom, ${coloursBright[0]} 0%, ${coloursBright[1]} 100%)`,
+            borderImageSlice: 1
+          })
+        } else {
+          
+          lineStyles = {
+            borderLeft: `1px solid ${coloursPale[0]}`,
+            borderBottom: `1px solid ${coloursPale[1]}`,
+          }
+        }
+
+        
         return (
-          <div className={lineClassNames} key={e}>{elem}</div>
+          <div className={lineClassNames}
+              key={e}
+              style={lineStyles}>
+              {elem}
+          </div>
         )
       })
 

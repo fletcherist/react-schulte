@@ -30,11 +30,15 @@
 
 .element {
   width: 70px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   text-align: center;
-  border-left: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
+  user-select: none;
+  // border-left: 1px solid #a5e3e6;
+  // border-bottom: 1px solid #dbdfff;
+  transition: border-color .3s;
+  // margin-left: -1px;
+  // margin-bottom: -1px;
   // align-self: center;
 }
 
@@ -45,3 +49,16 @@
 .element--last {
   border-bottom: none;
 }
+
+.element--center {
+  border-color: red;
+  border: 1px solid red;
+  z-index: 99;
+  margin-top: -1px;
+  margin-right: -1px;
+  border-image: linear-gradient(to bottom, #3acfd5 0%, #3a4ed5 100%);
+  border-image-slice: 1;
+  // border: 1px solid red;
+
+}
+
